@@ -7,16 +7,14 @@ public class ShootingPlatforms : MonoBehaviour {
 	//define maximum Distance where platforms can be shot
 	public float maximumDistance; 
 
-	Camera camera;
-
-
+	Camera cameraObject;
 
 	private bool shootPlatform = false;
 	private bool destroyPlatform = false;
 
 	// Use this for initialization
 	void Start () {
-		camera = GameObject.Find ("MainCamera").GetComponent<Camera> ();
+		cameraObject = GameObject.Find ("MainCamera").GetComponent<Camera> ();
 	}
 	
 	// Update is called once per frame
@@ -40,11 +38,10 @@ public class ShootingPlatforms : MonoBehaviour {
 
 
 		if (shootPlatform || destroyPlatform) {
-			Ray ray = camera.ViewportPointToRay (new Vector3 (0.5F, 0.5F, 0));
+			Ray ray = cameraObject.ViewportPointToRay (new Vector3 (0.5F, 0.5F, 0));
 			RaycastHit hit;
 
 			if (Physics.Raycast (ray, out hit, maximumDistance)) {
-				Debug.Log ("geht noch");
 				if (hit.collider.CompareTag ("platform")) {
 					if (shootPlatform) {
 						createPlatformFunction (hit.collider.gameObject);
@@ -60,11 +57,18 @@ public class ShootingPlatforms : MonoBehaviour {
 
 
 	private void createPlatformFunction(GameObject platform) {
-		platform.GetComponent<MeshRenderer> ().enabled = true;
+		if (platform.GetComponent<platformScript>().checkConnection() == true) {
+			platform.GetComponent<MeshRenderer> ().enabled = true;
+			platform.GetComponent<BoxCollider> ().isTrigger = false;
+		} else {
+			//Debug.Log ("Can not create platform!");
+		}
+	
 	}
 
 	private void destroyPlatformFunction(GameObject platform) {
 		platform.GetComponent<MeshRenderer> ().enabled = false;
+		platform.GetComponent<BoxCollider> ().isTrigger = true;
 	}
 
 }
