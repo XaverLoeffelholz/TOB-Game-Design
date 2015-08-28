@@ -12,6 +12,8 @@ public class ShootingPlatforms : MonoBehaviour {
 	private bool shootPlatform = false;
 	private bool destroyPlatform = false;
 
+	private GameObject currentPreview;
+
 	// Use this for initialization
 	void Start () {
 		cameraObject = GameObject.Find ("MainCamera").GetComponent<Camera> ();
@@ -36,39 +38,31 @@ public class ShootingPlatforms : MonoBehaviour {
 		} 
 
 
+		Ray ray = cameraObject.ViewportPointToRay (new Vector3 (0.5F, 0.5F, 0));
+		RaycastHit hit;
 
-		if (shootPlatform || destroyPlatform) {
-			Ray ray = cameraObject.ViewportPointToRay (new Vector3 (0.5F, 0.5F, 0));
-			RaycastHit hit;
+		//currentPreview.GetComponent<platformScript>().unpreview();
 
-			if (Physics.Raycast (ray, out hit, maximumDistance)) {
-				if (hit.collider.CompareTag ("platform")) {
-					if (shootPlatform) {
-						createPlatformFunction (hit.collider.gameObject);
-					} else {
-						destroyPlatformFunction (hit.collider.gameObject);
-					}
+		if (Physics.Raycast (ray, out hit, maximumDistance)) {
+			if (hit.collider.CompareTag ("platform")) {
+				if (hit.collider.gameObject.GetComponent<platformScript>().getState().Equals("inactive")
+					&& hit.collider.gameObject.GetComponent<platformScript>().checkConnection() == true) {
+					//currentPreview = hit.collider.gameObject;
+					hit.collider.gameObject.GetComponent<platformScript>().preview();
+				} 
+
+				if (shootPlatform && hit.collider.gameObject.GetComponent<platformScript>().checkConnection() == true) {
+					hit.collider.gameObject.GetComponent<platformScript>().build();
+				} else if (destroyPlatform) {
+					hit.collider.gameObject.GetComponent<platformScript>().destroy();
 				}
 
-			} 
-		}
+
+			}
+
+		} 
+		
 	
-	}
-
-
-	private void createPlatformFunction(GameObject platform) {
-		if (platform.GetComponent<platformScript>().checkConnection() == true) {
-			platform.GetComponent<MeshRenderer> ().enabled = true;
-			platform.GetComponent<BoxCollider> ().isTrigger = false;
-		} else {
-			//Debug.Log ("Can not create platform!");
-		}
-	
-	}
-
-	private void destroyPlatformFunction(GameObject platform) {
-		platform.GetComponent<MeshRenderer> ().enabled = false;
-		platform.GetComponent<BoxCollider> ().isTrigger = true;
 	}
 
 }
