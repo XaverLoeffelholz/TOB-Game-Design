@@ -98,6 +98,7 @@ public class platformScript : MonoBehaviour {
 		}
 		state = "preview";
 		this.GetComponent<MeshRenderer> ().enabled = true;
+		//this.GetComponent<Renderer> ().material.
 		this.GetComponent<Renderer> ().material.SetColor ("_Color", previewColor);
 	}
 
