@@ -9,6 +9,7 @@ public class platformScript : MonoBehaviour {
 
 	public Color previewColor;
 	public Color activeColor;
+	//public Color highlight;
 
 	// Use this for initialization
 	void Start () {
@@ -27,7 +28,6 @@ public class platformScript : MonoBehaviour {
 		}
 	}
 
-
 	/*void OnCollisionEnter(Collision other) {
 		Debug.Log ("etwas auf plattform");
 		if (getState ().Equals ("active") && other.gameObject.CompareTag("enemy")) {
@@ -40,10 +40,10 @@ public class platformScript : MonoBehaviour {
 
 	// still need to make sure plattforms at the border don't create exception
 	public bool checkConnection() {
-		if (init.platformArray [idX, idZ + 1].GetComponent<platformScript> ().getState().Equals("active")
-		 || init.platformArray [idX + 1, idZ].GetComponent<platformScript> ().getState().Equals("active")
-		 || init.platformArray [idX - 1, idZ].GetComponent<platformScript> ().getState().Equals("active")
-		 || init.platformArray [idX, idZ - 1].GetComponent<platformScript> ().getState().Equals("active")) {
+		if (init.platformArray [idX, Mathf.Min((idZ + 1),((init.platformArray.GetLength(1))-1))].GetComponent<platformScript> ().getState().Equals("active")
+		    || init.platformArray [Mathf.Min((idX + 1),((init.platformArray.GetLength(0))-1)), idZ].GetComponent<platformScript> ().getState().Equals("active")
+		    || init.platformArray [Mathf.Max((idX - 1),0), idZ].GetComponent<platformScript> ().getState().Equals("active")
+		    || init.platformArray [idX, Mathf.Max((idZ - 1),0)].GetComponent<platformScript> ().getState().Equals("active")) {
 			return true;
 		} else {
 			return false;
@@ -77,9 +77,10 @@ public class platformScript : MonoBehaviour {
 			    && enemy.transform.position.x <= (this.transform.position.x + 1)
 			    && enemy.transform.position.z >= (this.transform.position.z - 1)
 			    && enemy.transform.position.z <= (this.transform.position.z + 1)) {
-
-				enemy.GetComponent<NavMeshAgent>().enabled = false;
-				enemy.GetComponent<Rigidbody>().isKinematic = false;
+				if (enemy.GetComponent<NavMeshAgent>().isActiveAndEnabled) {
+					enemy.GetComponent<NavMeshAgent>().enabled = false;
+					enemy.GetComponent<Rigidbody>().isKinematic = false;
+				}
 			}
 
 		}
