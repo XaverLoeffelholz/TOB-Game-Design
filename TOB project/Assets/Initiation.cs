@@ -8,6 +8,8 @@ public class Initiation : MonoBehaviour {
 	public GameObject[,] platformArray;
 	public static int levelSize = 80;
 
+	private GameObject[] enemies;
+
 	// Use this for initialization
 	void Start () {
 
@@ -31,8 +33,11 @@ public class Initiation : MonoBehaviour {
 			}
 		}
 
+		enemies = GameObject.FindGameObjectsWithTag ("enemy");
 
-
+		foreach(GameObject enemy in enemies) {
+			enemy.GetComponent<enemyScript>().initiateGoal();
+		}
 
 	}
 	
