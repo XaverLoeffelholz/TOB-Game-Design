@@ -11,6 +11,7 @@ public class platformScript : MonoBehaviour {
 	public Color activeColor;
 	//public Color highlight;
 
+
 	// Use this for initialization
 	void Start () {
 		init = GameObject.Find ("StartPlatform").GetComponent<Initiation> ();
@@ -27,16 +28,6 @@ public class platformScript : MonoBehaviour {
 			build ();
 		}
 	}
-
-	/*void OnCollisionEnter(Collision other) {
-		Debug.Log ("etwas auf plattform");
-		if (getState ().Equals ("active") && other.gameObject.CompareTag("enemy")) {
-
-			Debug.Log ("gegner auf plattform" + this);
-		}
-
-	}*/
-
 
 	// still need to make sure plattforms at the border don't create exception
 	public bool checkConnection() {
@@ -69,6 +60,8 @@ public class platformScript : MonoBehaviour {
 
 	public void destroy() {
 		// check for enemys on this platform
+
+		//connections ();
 
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("enemy");
 
@@ -107,5 +100,5 @@ public class platformScript : MonoBehaviour {
 		state = "inactive";
 		this.GetComponent<MeshRenderer> ().enabled = false;
 	}
-
+	
 }

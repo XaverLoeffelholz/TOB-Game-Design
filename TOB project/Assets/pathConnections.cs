@@ -4,6 +4,8 @@ using System.Collections;
 public class pathConnections : MonoBehaviour {
 	public Transform start;
 	public Transform end;
+	public GameObject cage;
+
 	private NavMeshPath path;
 
 	// Use this for initialization
@@ -13,15 +15,16 @@ public class pathConnections : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.C)) {
-			NavMesh.CalculatePath(start.position, end.position, NavMesh.AllAreas, path);
-			if (path.status == NavMeshPathStatus.PathPartial) {
-				Debug.Log ("way is partial");
-			} else if (path.status == NavMeshPathStatus.PathComplete) {
-				Debug.Log ("way is complete");
-			} else {
-				Debug.Log ("error");
-			}
+		if (Input.GetKeyUp (KeyCode.Mouse0) || Input.GetKeyUp (KeyCode.Mouse1)) {
+			checkConnection();
 		}
+	}
+
+	public void checkConnection() {
+		NavMesh.CalculatePath(start.position, end.position, NavMesh.AllAreas, path);
+		if (path.status == NavMeshPathStatus.PathComplete) {
+			Debug.Log ("way is complete");
+			cage.GetComponent<CageScript>().destroyCage() ;
+		} 
 	}
 }

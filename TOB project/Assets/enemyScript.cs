@@ -27,17 +27,18 @@ public class enemyScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		player = GameObject.Find ("RigidBodyFPSController");
-		playerBody = player.GetComponent<Rigidbody> ();
 
-		goal = player.transform;
-		agent = GetComponent<NavMeshAgent>();
 	}
 
 
 	// give monster first goal when plattforms are created
 	public void initiateGoal () {
-		Debug.Log ("hier ist monster :" + this.name);
+		player = GameObject.Find ("RigidBodyFPSController");
+		playerBody = player.GetComponent<Rigidbody> ();
+		
+		goal = GameObject.Find("MainCamera").transform;
+		agent = GetComponent<NavMeshAgent>();
+
 		if (this.GetComponent<NavMeshAgent> ().isActiveAndEnabled) {
 			agent.SetDestination (goal.position);
 		}
@@ -47,6 +48,7 @@ public class enemyScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		goal = player.transform;
 	
 		if (this.GetComponent<NavMeshAgent> ().isActiveAndEnabled) {
@@ -56,30 +58,30 @@ public class enemyScript : MonoBehaviour {
 			}
 
 			if (agent.pathStatus == NavMeshPathStatus.PathPartial) {
-				//agent.autoBraking = true;
 				agent.Stop ();
+				//transform.LookAt(goal);
 			} else if (agent.pathStatus == NavMeshPathStatus.PathInvalid) {
-				//agent.autoBraking = true;
 				agent.Stop ();
 			} else {
 				agent.Resume();
 			}
 
 		}
-		//Debug.Log ("Way to player: " + navAgent.pathStatus);
-		//set animation speed based on navAgent 'Speed' var
-		animController.speed = agent.speed;
 
-		//character idle/walks/runs depending on nav agents speed
+
 
 		if (!agent.isOnOffMeshLink) {
-			if (agent.velocity.magnitude >= 0.5f) {
+			if (Mathf.Abs(agent.velocity.x) > 0.01f || Mathf.Abs(agent.velocity.z) > 0.001f) {
 				walkState = WalkingState.Running;
-			} else if (agent.velocity.magnitude >= 0.01f) {
-				walkState = WalkingState.Walking;
+
+				//set animation speed based on navAgent 'Speed' var
+				animController.speed = agent.speed;
+
 			} else {
 				walkState = WalkingState.Idle;
+
 			}
+
 		} else {
 			walkState = WalkingState.jumpingDown;
 			agent.ActivateCurrentOffMeshLink(true);
@@ -101,52 +103,43 @@ public class enemyScript : MonoBehaviour {
 			} else if (transform.position == endPos && jumpDown == true) {
 				jumpDown = false;
 				agent.CompleteOffMeshLink ();
+				walkState = WalkingState.Running;
+				Debug.Log ("Off mesh link fertig!");
+				Debug.Log ("State: " + walkState);
+
 			}
 		}
 
+
+
 		//get vector between monster and player
 		Vector3 distanceTopPlayer = transform.position - goal.position;
-		/*
-		if (distanceTopPlayer.magnitude <= 2.1f) {
+		if (distanceTopPlayer.magnitude <= 2.5f) {
 			animController.SetInteger ("attackState", (int)AttackState.Attack);
-		} else {
-			animController.SetInteger ("attackState", (int)AttackState.NoAttack);
-		} */
+		}
 
 		if (distanceTopPlayer.magnitude <= 1.6f) {
-			transform.LookAt(goal);
-			animController.SetInteger ("attackState", (int)AttackState.Attack);
-			Debug.Log ("close to player!");
-			//walkState = WalkingState.jumpingDown;
-			//Debug.Log ("das ist der vektor: " + new Vector3(agent.velocity.x*100.0f, 25.0f,agent.velocity.z*100.0f));
-			//GameObject.Find ("RigidBodyFPSController").GetComponent<Rigidbody>().AddForce(new Vector3(100.0f, 105.0f,100.0f));
-			playerBody.drag = 0.0f;
-			playerBody.velocity = new Vector3 (playerBody.velocity.x, 0f, playerBody.velocity.z);
-			playerBody.AddForce (agent.velocity * 40.0f, ForceMode.Acceleration);
-			playerBody.MovePosition (new Vector3 (player.transform.position.x, player.transform.position.y + 0.2f, player.transform.position.z));
+			//transform.LookAt(goal);
+			Invoke("punchPlayer",0.15f);
 		} else {
 			animController.SetInteger ("attackState", (int)AttackState.NoAttack);
 		}
 
-
 		//send move state info to animator controller
 		animController.SetInteger ("walkingState", (int)walkState);
+		
+
+
 
 
 
 	}
 
-	void OnAnimatorMove () {
-		Quaternion lookRotation = new Quaternion ();
-
-		//set the navAgent's velocity to the velocity of the animation clip currently playing
-		//	navAgent.velocity = animController.deltaPosition / Time.deltaTime;
-
-		if (walkState == WalkingState.Idle) {
-			transform.LookAt(goal);
-		
-		} 
-
+	public void punchPlayer() {
+		playerBody.drag = 0.0f;
+		playerBody.velocity = new Vector3 (playerBody.velocity.x, 0f, playerBody.velocity.z);
+		playerBody.AddForce (agent.velocity * 15.0f, ForceMode.Acceleration);
+		playerBody.MovePosition (new Vector3 (player.transform.position.x, player.transform.position.y + 0.1f, player.transform.position.z));
 	}
 
 	
