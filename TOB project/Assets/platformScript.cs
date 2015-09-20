@@ -9,13 +9,16 @@ public class platformScript : MonoBehaviour {
 
 	public Color previewColor;
 	public Color activeColor;
-	//public Color highlight;
+    //public Color highlight;
+    public bool indestructable = false;
 
+    public int connectionID;
 
 	// Use this for initialization
 	void Start () {
 		init = GameObject.Find ("StartPlatform").GetComponent<Initiation> ();
-	}
+        connectionID = 0;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -24,8 +27,9 @@ public class platformScript : MonoBehaviour {
 
 
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.CompareTag("end")) {
+		if (other.gameObject.CompareTag("fixed") || other.gameObject.CompareTag("end")) {
 			build ();
+            this.indestructable = true;
 		}
 	}
 
@@ -59,9 +63,8 @@ public class platformScript : MonoBehaviour {
 	}
 
 	public void destroy() {
-		// check for enemys on this platform
 
-		//connections ();
+		// check for enemys on this platform
 
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("enemy");
 
@@ -73,7 +76,9 @@ public class platformScript : MonoBehaviour {
 				if (enemy.GetComponent<NavMeshAgent>().isActiveAndEnabled) {
 					enemy.GetComponent<NavMeshAgent>().enabled = false;
 					enemy.GetComponent<Rigidbody>().isKinematic = false;
-				}
+                    enemy.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, -3.0f, 0.0f), ForceMode.Impulse);
+                    GameObject.Find("Calculations").GetComponent<EnemyDeathAndRespawn>().oneEnemyKilled(enemy);
+                }
 			}
 
 		}

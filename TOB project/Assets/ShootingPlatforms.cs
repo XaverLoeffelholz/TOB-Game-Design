@@ -13,10 +13,12 @@ public class ShootingPlatforms : MonoBehaviour {
 	private bool destroyPlatform = false;
 
 	private GameObject currentPreview;
+    private int destroyedPlattforms;
 
 	// Use this for initialization
 	void Start () {
-		cameraObject = GameObject.Find ("MainCamera").GetComponent<Camera> ();
+        destroyedPlattforms = 0;
+        cameraObject = GameObject.Find ("MainCamera").GetComponent<Camera> ();
 	}
 	
 	// Update is called once per frame
@@ -54,15 +56,23 @@ public class ShootingPlatforms : MonoBehaviour {
 				if (shootPlatform && hit.collider.gameObject.GetComponent<platformScript>().checkConnection() == true) {
 					hit.collider.gameObject.GetComponent<platformScript>().build();
 				} else if (destroyPlatform) {
-					hit.collider.gameObject.GetComponent<platformScript>().destroy();
-				}
+                    if (hit.collider.gameObject.GetComponent<platformScript>().indestructable == false)
+                    {
+                        destroyedPlattforms++;
+                        hit.collider.gameObject.GetComponent<platformScript>().destroy();  
+                    }
+                }
 
 
 			}
 
 		} 
-		
 	
 	}
+
+    public int getDestroyedPlatforms()
+    {
+        return destroyedPlattforms;
+    }
 
 }

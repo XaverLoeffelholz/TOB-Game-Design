@@ -24,11 +24,11 @@ public class enemyScript : MonoBehaviour {
 
 	private Rigidbody playerBody;
 	private GameObject player;
+    private Vector3 startPosition;
 
 	// Use this for initialization
 	void Start () {
-
-	}
+    }
 
 
 	// give monster first goal when plattforms are created
@@ -44,7 +44,8 @@ public class enemyScript : MonoBehaviour {
 		}
 
 		startNav = true;
-	}
+        startPosition = transform.position;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -128,19 +129,17 @@ public class enemyScript : MonoBehaviour {
 		//send move state info to animator controller
 		animController.SetInteger ("walkingState", (int)walkState);
 		
-
-
-
-
-
 	}
 
 	public void punchPlayer() {
 		playerBody.drag = 0.0f;
 		playerBody.velocity = new Vector3 (playerBody.velocity.x, 0f, playerBody.velocity.z);
-		playerBody.AddForce (agent.velocity * 15.0f, ForceMode.Acceleration);
-		playerBody.MovePosition (new Vector3 (player.transform.position.x, player.transform.position.y + 0.1f, player.transform.position.z));
-	}
+		playerBody.MovePosition (new Vector3 (player.transform.position.x, player.transform.position.y + 0.2f, player.transform.position.z - 0.1f));
+        playerBody.AddForce(agent.velocity * 15.0f, ForceMode.Acceleration);
+    }
 
-	
+	public Vector3 getStartPosition()
+    {
+        return startPosition;
+    }
 }
