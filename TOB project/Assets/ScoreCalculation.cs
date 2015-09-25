@@ -95,7 +95,16 @@ public class ScoreCalculation : MonoBehaviour {
 
     private int calculateEnemyBonus()
     {
-        int killedEnemies = this.GetComponent<EnemyDeathAndRespawn>().getKilledEnemies(); ;
+
+
+
+        int killedEnemies = 0;
+
+        foreach (GameObject enemy in enemies)
+        {
+            killedEnemies += enemy.GetComponent<enemyScript>().numberofDeaths;
+        }
+
 
         if (killedEnemies == 0)
         {

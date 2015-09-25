@@ -14,6 +14,10 @@ public class enemyScript : MonoBehaviour {
 	//link to NavMeshAgent component
 	public NavMeshAgent navAgent;
 
+    //how often did player kill this enemy:
+    public int numberofDeaths = 0;
+
+    public GameObject spawnAnimation;
 
 	public float jumpspeed;
 
@@ -44,7 +48,7 @@ public class enemyScript : MonoBehaviour {
 		}
 
 		startNav = true;
-        startPosition = transform.position;
+        startPosition = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
     }
 	
 	// Update is called once per frame
@@ -58,10 +62,10 @@ public class enemyScript : MonoBehaviour {
 				agent.SetDestination(goal.position);
 			}
 
-			if (agent.pathStatus == NavMeshPathStatus.PathPartial) {
+			if (agent.pathStatus == NavMeshPathStatus.PathPartial && !agent.isOnOffMeshLink) {
 				agent.Stop ();
 				//transform.LookAt(goal);
-			} else if (agent.pathStatus == NavMeshPathStatus.PathInvalid) {
+			} else if (agent.pathStatus == NavMeshPathStatus.PathInvalid && !agent.isOnOffMeshLink) {
 				agent.Stop ();
 			} else {
 				agent.Resume();
@@ -88,7 +92,7 @@ public class enemyScript : MonoBehaviour {
 			agent.ActivateCurrentOffMeshLink(true);
 
 			float stepUp = 1.0f * agent.speed * Time.deltaTime;
-			float stepDown = 1.5f * agent.speed * Time.deltaTime;
+			float stepDown = 2.0f * agent.speed * Time.deltaTime;
 			Vector3 endPos = agent.currentOffMeshLinkData.endPos + Vector3.up*agent.baseOffset;
 			Vector3 middlePos = agent.currentOffMeshLinkData.startPos + Vector3.up*0.6f;
 			middlePos.Set(agent.currentOffMeshLinkData.startPos.x + 0.8f*(endPos.x-agent.currentOffMeshLinkData.startPos.x), middlePos.y, agent.currentOffMeshLinkData.startPos.z + 0.8f*(endPos.z-agent.currentOffMeshLinkData.startPos.z));
@@ -97,14 +101,16 @@ public class enemyScript : MonoBehaviour {
 
 			if (transform.position != middlePos && jumpDown == false) {
 				transform.position = Vector3.MoveTowards(transform.position, middlePos, stepUp);
-			} else if (transform.position == middlePos && jumpDown == false) {
+			} else if (transform.position.y >= (middlePos.y-0.8) && jumpDown == false) {
 				jumpDown = true;
-			} else if (transform.position != endPos && jumpDown == true) {
+			}
+
+            if (transform.position != endPos && jumpDown == true) {
 				transform.position = Vector3.MoveTowards(transform.position, endPos, stepDown);
-			} else if (transform.position == endPos && jumpDown == true) {
+			} else if (transform.position.y <= (endPos.y + 0.5) && jumpDown == true) {
 				jumpDown = false;
-				agent.CompleteOffMeshLink ();
-				walkState = WalkingState.Running;
+                agent.CompleteOffMeshLink();
+                walkState = WalkingState.Running;
 				Debug.Log ("Off mesh link fertig!");
 				Debug.Log ("State: " + walkState);
 
@@ -141,5 +147,24 @@ public class enemyScript : MonoBehaviour {
 	public Vector3 getStartPosition()
     {
         return startPosition;
+    }
+
+    private void respawnEnemy()
+    {
+        Instantiate(spawnAnimation, getStartPosition(), Quaternion.identity);
+        this.transform.position = getStartPosition();
+        this.GetComponent<NavMeshAgent>().enabled = true;
+        this.GetComponent<Rigidbody>().isKinematic = true;
+    }
+
+    public void kill()
+    {
+        numberofDeaths++;
+        this.GetComponent<NavMeshAgent>().enabled = false;
+        this.GetComponent<Rigidbody>().isKinematic = false;
+        this.GetComponent<Rigidbody>().mass = 25;
+        //this.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, -3.0f, 0.0f), ForceMode.Acceleration);
+        //this.GetComponent<Rigidbody>().AddRelativeTorque(new Vector3(-5.0f, 0.0f, 0.0f), ForceMode.Impulse);
+        Invoke("respawnEnemy", 4.0f);
     }
 }

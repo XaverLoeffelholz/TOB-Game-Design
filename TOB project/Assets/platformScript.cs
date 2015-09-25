@@ -74,10 +74,7 @@ public class platformScript : MonoBehaviour {
 			    && enemy.transform.position.z >= (this.transform.position.z - 1)
 			    && enemy.transform.position.z <= (this.transform.position.z + 1)) {
 				if (enemy.GetComponent<NavMeshAgent>().isActiveAndEnabled) {
-					enemy.GetComponent<NavMeshAgent>().enabled = false;
-					enemy.GetComponent<Rigidbody>().isKinematic = false;
-                    enemy.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, -3.0f, 0.0f), ForceMode.Impulse);
-                    GameObject.Find("Calculations").GetComponent<EnemyDeathAndRespawn>().oneEnemyKilled(enemy);
+                    enemy.GetComponent<enemyScript>().kill();
                 }
 			}
 
