@@ -30,7 +30,6 @@ public class pathConnection : MonoBehaviour {
 	public void checkConnection() {
 		NavMesh.CalculatePath(start.position, end.position, NavMesh.AllAreas, path);
 		if (path.status == NavMeshPathStatus.PathComplete) {
-
             connectionSuccessful = true;
 
             // check thorugh all connections

@@ -18,7 +18,7 @@ public class platformScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		init = GameObject.Find ("StartPlatform").GetComponent<Initialization> ();
+		init = GameObject.Find ("startPlatform").GetComponent<Initialization> ();
         connectionID = 0;
     }
 
@@ -66,7 +66,7 @@ public class platformScript : MonoBehaviour {
 
 	// destroy a platform and make it inactive
 	public void destroy() {
-
+		// run the platorm destroyed animation
         Instantiate(destroyAnimation, this.transform.position, Quaternion.identity);
 
         // check for enemies on this platform and kill them

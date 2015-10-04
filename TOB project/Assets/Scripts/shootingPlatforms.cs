@@ -75,39 +75,6 @@ public class shootingPlatforms : MonoBehaviour {
 		// set the first point of the line renderer to the gun position
 		laserLine.SetPosition(0, laserGun.transform.position);
        
-        /*
-
-		// set the second point of the line renderer to where the raycast hit or to infinity if the raycast did not hit anything
-		if (shootPlatform && hitPlatform) {
-			// display the laser
-			laserLine.material.color = laserBuildColor;
-			laserLine.enabled = true;
-			// set the second point of the line renderer to the where the raycast hit
-			laserLine.SetPosition (1, hit.point);
-			// build the platform
-		} else if (shootPlatform && !hitPlatform) {
-			// display the laser
-			laserLine.material.color = laserBuildColor;
-			laserLine.enabled = true;
-			// set the second point of the line renderer to "infinity"
-			laserLine.SetPosition(1, ray.origin + ray.direction * maximumDistance);
-		} else if (destroyPlatform && hitPlatform) {
-			// display the laser
-			laserLine.material.color = laserDestroyColor;
-			laserLine.enabled = true;
-			// set the second point of the line renderer to the where the raycast hit
-			laserLine.SetPosition (1, hit.point);
-			// build the platform
-		} else if (destroyPlatform && !hitPlatform) {
-			// display the laser
-			laserLine.material.color = laserDestroyColor;
-			laserLine.enabled = true;
-			// set the second point of the line renderer to "infinity"
-			laserLine.SetPosition(1, ray.origin + ray.direction * maximumDistance);
-		}
-
-    */
-
 		// if the raycast hit a platform
 		if (hitPlatform) {
 			string platformState = "";

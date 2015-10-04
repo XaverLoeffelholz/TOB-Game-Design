@@ -14,8 +14,8 @@ public class trophyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		// rotate the trophy to make it more spectacular
         trophy.Rotate(0, 25.0f * Time.deltaTime, 0);
-
     }
 
     void OnTriggerEnter(Collider other)

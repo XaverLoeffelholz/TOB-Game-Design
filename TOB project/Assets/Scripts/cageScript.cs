@@ -5,8 +5,7 @@ public class cageScript : MonoBehaviour {
     public GameObject explosion;
     private Vector3 posOfExplosion;
     private bool cageDestroyed;
-
-
+	
     // Use this for initialization
     void Start () {
         cageDestroyed = false;
