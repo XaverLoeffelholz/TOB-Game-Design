@@ -6,6 +6,7 @@ public class cageScript : MonoBehaviour {
     private Vector3 posOfExplosion;
     private bool cageDestroyed;
 
+
     // Use this for initialization
     void Start () {
         cageDestroyed = false;

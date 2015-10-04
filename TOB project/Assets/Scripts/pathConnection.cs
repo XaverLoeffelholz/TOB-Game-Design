@@ -5,13 +5,18 @@ public class pathConnection : MonoBehaviour {
 	public Transform start;
 	public Transform end;
 	public GameObject cage;
+    public bool connectionSuccessful = false;
 
-	private NavMeshPath path;
+    private GameObject[] allconnections;
+    private bool allConnectionsDone = false;
+
+    private NavMeshPath path;
 
 	// Use this for initialization
 	void Start () {
 		path = new NavMeshPath ();
-	}
+        allconnections = GameObject.FindGameObjectsWithTag("connectionPoint");
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -25,8 +30,21 @@ public class pathConnection : MonoBehaviour {
 	public void checkConnection() {
 		NavMesh.CalculatePath(start.position, end.position, NavMesh.AllAreas, path);
 		if (path.status == NavMeshPathStatus.PathComplete) {
-			Debug.Log ("Generator Tower is connected to Trophy Tower");
-			cage.GetComponent<cageScript>().destroyCage();
+
+            connectionSuccessful = true;
+
+            // check thorugh all connections
+            allConnectionsDone = true;
+
+            foreach (GameObject connection in allconnections)
+            {
+                if (!connection.GetComponent<pathConnection>().connectionSuccessful)
+                {
+                    allConnectionsDone = false;
+                }
+            }
+
+            if (allConnectionsDone) { cage.GetComponent<cageScript>().destroyCage(); }
 		} 
 	}
 }

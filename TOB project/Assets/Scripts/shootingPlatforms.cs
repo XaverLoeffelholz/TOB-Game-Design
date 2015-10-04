@@ -128,7 +128,6 @@ public class shootingPlatforms : MonoBehaviour {
 			else if (shootPlatform) {
 				// if platform is in a preview state and connected, build it
 				if (connected) {
-					Debug.Log ("platform built");
 					// build the platform
 					hit.collider.gameObject.GetComponent<platformScript> ().build ();
 
@@ -144,7 +143,6 @@ public class shootingPlatforms : MonoBehaviour {
 				if (platformState == "active") {
 					// if the platform can be destroyed, destroy it
 					if (hit.collider.gameObject.GetComponent<platformScript> ().indestructable == false) {
-						Debug.Log ("platform destroyed");
 						destroyedPlatforms++;
 						// destroy the platform
 						hit.collider.gameObject.GetComponent<platformScript> ().destroy ();

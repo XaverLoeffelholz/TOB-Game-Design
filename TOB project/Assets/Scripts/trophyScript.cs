@@ -15,6 +15,7 @@ public class trophyScript : MonoBehaviour
     void Update()
     {
         trophy.Rotate(0, 25.0f * Time.deltaTime, 0);
+
     }
 
     void OnTriggerEnter(Collider other)
