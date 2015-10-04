@@ -14,9 +14,10 @@ public class shootingPlatforms : MonoBehaviour {
 
 	private GameObject currentPreview;
     private int destroyedPlatforms;
+    public GameObject laserGun;
 
-	private float timer;
-	private GameObject laserGun;
+    private float timer;
+	
 	private LineRenderer laserLine;
 	private float laserDisplayTime = 0.2f;
 	private Color laserBuildColor = new Color(0f, 1f, 0f, 0.4f);
@@ -26,7 +27,6 @@ public class shootingPlatforms : MonoBehaviour {
 	void Start () {
         destroyedPlatforms = 0;
 		cameraObject = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ();
-		laserGun = GameObject.FindGameObjectWithTag ("Gun");
 		laserLine = laserGun.GetComponent<LineRenderer> ();
 	}
 

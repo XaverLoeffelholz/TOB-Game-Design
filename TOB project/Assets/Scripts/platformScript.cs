@@ -12,7 +12,8 @@ public class platformScript : MonoBehaviour {
     //public Color highlight;
     public bool indestructable = false;
 
-    public GameObject destroyAnimation; 
+    public GameObject destroyAnimation;
+    public GameObject buildingAnimation;
 
     public int connectionID;
 
@@ -57,7 +58,8 @@ public class platformScript : MonoBehaviour {
 
 	// build a platform and make it active (set the color to active clor)
 	public void build() {
-		state = "active";
+        Instantiate(buildingAnimation, this.transform.position, Quaternion.identity);
+        state = "active";
 		this.GetComponent<MeshRenderer> ().enabled = true;
 		this.GetComponent<BoxCollider> ().isTrigger = false;
 		this.GetComponent<Renderer> ().material.SetColor ("_Color", activeColor);	
