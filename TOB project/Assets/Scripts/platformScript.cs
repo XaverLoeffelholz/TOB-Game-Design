@@ -19,7 +19,7 @@ public class platformScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		init = GameObject.Find ("StartPlatform").GetComponent<Initialization> ();
+		init = GameObject.Find ("startPlatform").GetComponent<Initialization> ();
         connectionID = 0;
     }
 
@@ -58,6 +58,7 @@ public class platformScript : MonoBehaviour {
 
 	// build a platform and make it active (set the color to active clor)
 	public void build() {
+		// run the platform built animation
         Instantiate(buildingAnimation, this.transform.position, Quaternion.identity);
         state = "active";
 		this.GetComponent<MeshRenderer> ().enabled = true;

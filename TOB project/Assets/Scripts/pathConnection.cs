@@ -34,7 +34,6 @@ public class pathConnection : MonoBehaviour {
 
             // check thorugh all connections
             allConnectionsDone = true;
-
             foreach (GameObject connection in allconnections)
             {
                 if (!connection.GetComponent<pathConnection>().connectionSuccessful)
@@ -43,7 +42,10 @@ public class pathConnection : MonoBehaviour {
                 }
             }
 
-            if (allConnectionsDone) { cage.GetComponent<cageScript>().destroyCage(); }
+			// if all the generator platform(s) is(are) connected to the trophy platform, destroy the cage
+            if (allConnectionsDone) { 
+				cage.GetComponent<cageScript>().destroyCage(); 
+			}
 		} 
 	}
 }
