@@ -19,8 +19,8 @@ public class shootingPlatforms : MonoBehaviour {
 	private GameObject laserGun;
 	private LineRenderer laserLine;
 	private float laserDisplayTime = 0.2f;
-	private Color laserBuildColor = new Color(0f, 1f, 0f);
-	private Color laserDestroyColor = new Color(1f, 0f, 0f);
+	private Color laserBuildColor = new Color(0f, 1f, 0f, 0.4f);
+	private Color laserDestroyColor = new Color(1f, 0f, 0f, 0.4f);
 
 	// Use this for initialization
 	void Start () {
@@ -74,6 +74,8 @@ public class shootingPlatforms : MonoBehaviour {
 
 		// set the first point of the line renderer to the gun position
 		laserLine.SetPosition(0, laserGun.transform.position);
+       
+        /*
 
 		// set the second point of the line renderer to where the raycast hit or to infinity if the raycast did not hit anything
 		if (shootPlatform && hitPlatform) {
@@ -104,6 +106,8 @@ public class shootingPlatforms : MonoBehaviour {
 			laserLine.SetPosition(1, ray.origin + ray.direction * maximumDistance);
 		}
 
+    */
+
 		// if the raycast hit a platform
 		if (hitPlatform) {
 			string platformState = "";
@@ -123,11 +127,16 @@ public class shootingPlatforms : MonoBehaviour {
 			// if shoot platform
 			else if (shootPlatform) {
 				// if platform is in a preview state and connected, build it
-				if ((platformState == "preview") && connected) {
+				if (connected) {
 					Debug.Log ("platform built");
 					// build the platform
 					hit.collider.gameObject.GetComponent<platformScript> ().build ();
-				}
+
+                    // show laser green
+                    laserLine.material.color = laserBuildColor;
+                    laserLine.enabled = true;
+                    laserLine.SetPosition(1, hit.point);
+                }
 			}
 			// if destroy platform
 			else if (destroyPlatform) {
@@ -138,8 +147,13 @@ public class shootingPlatforms : MonoBehaviour {
 						Debug.Log ("platform destroyed");
 						destroyedPlatforms++;
 						// destroy the platform
-						hit.collider.gameObject.GetComponent<platformScript> ().destroy ();  
-					}
+						hit.collider.gameObject.GetComponent<platformScript> ().destroy ();
+
+                        // show laser red
+                        laserLine.material.color = laserDestroyColor;
+                        laserLine.enabled = true;
+                        laserLine.SetPosition(1, hit.point);
+                    }
 				}
 			}
 		}

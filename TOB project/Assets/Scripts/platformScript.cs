@@ -12,11 +12,13 @@ public class platformScript : MonoBehaviour {
     //public Color highlight;
     public bool indestructable = false;
 
+    public GameObject destroyAnimation; 
+
     public int connectionID;
 
 	// Use this for initialization
 	void Start () {
-		init = GameObject.Find ("startPlatform").GetComponent<Initialization> ();
+		init = GameObject.Find ("StartPlatform").GetComponent<Initialization> ();
         connectionID = 0;
     }
 
@@ -64,8 +66,11 @@ public class platformScript : MonoBehaviour {
 
 	// destroy a platform and make it inactive
 	public void destroy() {
-		// check for enemies on this platform and kill them
-		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("enemy");
+
+        Instantiate(destroyAnimation, this.transform.position, Quaternion.identity);
+
+        // check for enemies on this platform and kill them
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag ("enemy");
 		foreach (GameObject enemy in enemies) {
 			if (enemy.transform.position.x >= (this.transform.position.x - 1)
 			    && enemy.transform.position.x <= (this.transform.position.x + 1)
