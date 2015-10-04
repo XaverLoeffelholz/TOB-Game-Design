@@ -18,7 +18,7 @@ public class platformScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		init = GameObject.Find ("startPlatform").GetComponent<Initialization> ();
+		init = GameObject.Find ("StartPlatform").GetComponent<Initialization> ();
         connectionID = 0;
     }
 
