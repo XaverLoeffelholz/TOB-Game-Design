@@ -20,6 +20,6 @@ public class trophyScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trophy Collected!!!");
+        GameObject.Find("Score").GetComponent<ScoreCalculation>().showScore();
     }
 }

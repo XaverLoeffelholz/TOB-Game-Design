@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ScoreCalculation : MonoBehaviour {
@@ -19,19 +20,32 @@ public class ScoreCalculation : MonoBehaviour {
 	void Start () {
         connectionID = 0;
         enemies = GameObject.FindGameObjectsWithTag("enemy");
+
+
     }
 	
 	// Update is called once per frame
 	void Update () {
 	    if (Input.GetKeyDown(KeyCode.U))
          {
-            calculateBonus();
+            showScore();
          }
 
         if (Input.GetKeyDown(KeyCode.T))
         {
             Debug.Log(Time.timeSinceLevelLoad);
         }
+    }
+
+    public void showScore()
+    {
+        calculateBonus();
+        GameObject.Find("Big Trap Bonus_number").GetComponent<Text>().text = bigtrapBonus.ToString();
+        GameObject.Find("Enemy Bonus_number").GetComponent<Text>().text = enemyBonus.ToString();
+        GameObject.Find("time Bonus_number").GetComponent<Text>().text = timeBonus.ToString();  
+        GameObject.Find("platformBonus_number").GetComponent<Text>().text = platformBonus.ToString();
+        GameObject.Find("Full Score_number").GetComponent<Text>().text = finalBonus.ToString();
+
     }
 
     private void calculateBonus()
@@ -50,6 +64,8 @@ public class ScoreCalculation : MonoBehaviour {
         Debug.Log("bigtrapBonus :" + bigtrapBonus);
         Debug.Log("Ganzer Bonus:" + finalBonus);
     }
+
+
 
 
 
@@ -126,7 +142,7 @@ public class ScoreCalculation : MonoBehaviour {
 
     private int calculateBigTrapBonus()
     {
-        GameObject[,] platformArray = GameObject.Find("startPlatform").GetComponent<Initialization>().platformArray;
+        GameObject[,] platformArray = GameObject.Find("StartPlatform").GetComponent<Initialization>().platformArray;
 
         for (int i = 0; i < platformArray.GetLength(0) - 1; i++)
         {
