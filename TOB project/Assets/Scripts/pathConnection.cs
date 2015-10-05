@@ -38,7 +38,10 @@ public class pathConnection : MonoBehaviour {
             {
                 if (!connection.GetComponent<pathConnection>().connectionSuccessful)
                 {
-                    allConnectionsDone = false;
+                    if (connection.GetComponent<pathConnection>().cage == this.cage)
+                    {
+                        allConnectionsDone = false;
+                    }
                 }
             }
 

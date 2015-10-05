@@ -94,7 +94,7 @@ public class shootingPlatforms : MonoBehaviour {
 			// if shoot platform
 			else if (shootPlatform) {
 				// if platform is in a preview state and connected, build it
-				if ((platformState == "preview") && connected) {
+				if ((platformState == "preview" || platformState == "inactive") && connected) {
 					// build the platform
 					hit.collider.gameObject.GetComponent<platformScript> ().build ();
 
