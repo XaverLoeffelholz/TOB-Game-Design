@@ -23,7 +23,7 @@ public class platformEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
 	public void OnPointerEnter(PointerEventData eventData) {
 		// rotate the trophy to make it more spectacular
-		trophy.GetComponent<trophyRotation>().enabled = true;
+		trophy.GetComponent<trophyRotation> ().enabled = true;
 		// change the platform color to highlight color
 		platformRenderer.material.color = highlightColor;
 	}
@@ -40,5 +40,18 @@ public class platformEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 	public void OnPointerClick(PointerEventData eventData) {
 		// load a level on mouse click
 		Application.LoadLevel (level);
+
+		// debug codes
+		if (level == 1) {
+			PlayerPrefs.SetInt ("dragonTrophy", 1);
+		} else if (level == 2) {
+			PlayerPrefs.SetInt ("airportTrophy", 1);
+		} else if (level == 3) {
+			PlayerPrefs.SetInt ("merlionTrophy", 1);
+		} else if (level == 4) {
+			PlayerPrefs.SetInt ("singaTrophy", 1);
+		} else if (level == 5) {
+			PlayerPrefs.SetInt ("mbsTrophy", 1);
+		}
 	}
 }
