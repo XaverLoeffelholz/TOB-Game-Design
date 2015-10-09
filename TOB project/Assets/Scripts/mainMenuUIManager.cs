@@ -48,9 +48,15 @@ public class mainMenuUIManager : MonoBehaviour {
 			trophyMBS.GetComponent<MeshRenderer> ().enabled = true;
 		}
 
+		// display the cursor
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
+
+	// play the cutscene
+	public void playMovie () {
+		Application.LoadLevel ("cutscene");
+	}
 
 	// start a new game
 	public void newGame() {

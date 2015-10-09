@@ -39,7 +39,7 @@ public class platformEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
 	public void OnPointerClick(PointerEventData eventData) {
 		// load a level on mouse click
-		Application.LoadLevel (level);
+		Application.LoadLevel ("Level" + level.ToString ());
 
 		// debug codes
 		if (level == 1) {

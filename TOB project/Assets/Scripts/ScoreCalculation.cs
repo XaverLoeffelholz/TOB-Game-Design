@@ -58,48 +58,37 @@ public class ScoreCalculation : MonoBehaviour {
         scores[10] = ui_fullScore;
         scores[11] = ui_fullScoreNR;
 
-        foreach (GameObject score in scores)
-        {
+        foreach (GameObject score in scores) {
             score.GetComponent<Text>().color = new Color(0.2f, 0.2f, 0.2f, 0.0f);
         }
 
         scoreBG = scoreBGGameObject.GetComponent<CanvasGroup>();
         scoreBG.alpha = 0.0f;
-
-        
     }
 	
 	// Update is called once per frame
 	void Update () {
-
-        if (fadeWhite)
-        {
+        if (fadeWhite) {
              scoreBG.alpha = Mathf.Lerp(scoreBG.alpha, 1.0f, Time.deltaTime);
         }
-
-        if (fadeScores)
-        {
-           if (counter < scores.Length && animateIn(scores[counter].GetComponent<Text>()))
-            {
+        if (fadeScores) {
+           if (counter < scores.Length && animateIn(scores[counter].GetComponent<Text>())) {
                 counter++;
             }
         }
     }
 
-    private bool animateIn(Text text){
-        text.color = Color.Lerp(text.color, Color.grey, Time.deltaTime*11.0f);
-
-        if (text.color== Color.grey)
-        {
+    private bool animateIn(Text text) {
+        text.color = Color.Lerp(text.color, Color.grey, Time.deltaTime * 11.0f);
+        if (text.color== Color.grey) {
             return true;
-        } else
-        {
+        } else {
             return false;
         }
     }
 
-    public void showScore()
-    {
+	// display the score
+    public void showScore() {
         calculateBonus();
         GameObject.Find("Big Trap Bonus_number").GetComponent<Text>().text = bigtrapBonus.ToString();
         GameObject.Find("Enemy Bonus_number").GetComponent<Text>().text = enemyBonus.ToString();
@@ -108,22 +97,19 @@ public class ScoreCalculation : MonoBehaviour {
         GameObject.Find("Full Score_number").GetComponent<Text>().text = finalBonus.ToString();
 
         fadeinWhite();
-
         Invoke("fadeinScores", 1.1f);
     }
 
-    private void fadeinWhite()
-    {
+    private void fadeinWhite() {
         fadeWhite = true;
     }
 
-    private void fadeinScores()
-    {
+    private void fadeinScores() {
         fadeScores = true;
     }
 
-    private void calculateBonus()
-    {
+	// calculate all the bonus
+    private void calculateBonus() {
         platformBonus = calculatePlatformBonus();
         timeBonus = calculateTimeBonus();
         enemyBonus = calculateEnemyBonus();
@@ -139,95 +125,70 @@ public class ScoreCalculation : MonoBehaviour {
         Debug.Log("Ganzer Bonus:" + finalBonus);
     }
 
-
-
-
-
-
-    private int calculatePlatformBonus()
-    {
+	// calculate the platform bonus
+    private int calculatePlatformBonus() {
+		// get the number of platforms destroyed
         int destroyedPlatforms = GameObject.Find("player").GetComponent<shootingPlatforms>().getDestroyedPlatforms();
 
-        if (destroyedPlatforms == expectedDestroyedPlatforms)
-        {
+		// assign score based on the number of platforms destroyed
+        if (destroyedPlatforms == expectedDestroyedPlatforms) {
             return 50;
-        } else if (destroyedPlatforms == expectedDestroyedPlatforms-1)
-        {
+        } else if (destroyedPlatforms == expectedDestroyedPlatforms - 1) {
             return 100;
-        } else if (destroyedPlatforms <= expectedDestroyedPlatforms - 2)
-        {
+        } else if (destroyedPlatforms <= expectedDestroyedPlatforms - 2) {
             return 200;
-        } else
-        {
+        } else {
             return 0;
         }
     }
 
-    private int calculateTimeBonus()
-    {
+	// calculate the time bonus
+    private int calculateTimeBonus() {
+		// calculate the time taken to complete this level
         float finalTime = Time.timeSinceLevelLoad; 
 
-        if (finalTime <= 0.8* expectedTime)
-        {
+		// assign score based on the time taken
+        if (finalTime <= 0.8 * expectedTime) {
             return 300;
-        } else if (finalTime <= 0.9 * expectedTime)
-        {
+        } else if (finalTime <= 0.9 * expectedTime) {
             return 150;
-        } else if (finalTime <= expectedTime)
-        {
+        } else if (finalTime <= expectedTime) {
             return 50;
-        } else
-        {
+        } else {
             return 0;
         }
-
     }
 
-    private int calculateEnemyBonus()
-    {
-
-
-
+	// calculate the enemy bonus
+    private int calculateEnemyBonus() {
+		// calculate the number of enemies killed
         int killedEnemies = 0;
-
-        foreach (GameObject enemy in enemies)
-        {
+        foreach (GameObject enemy in enemies) {
 			killedEnemies += enemy.GetComponent<enemyScript>().numberOfEnemyKilled;
         }
 
-
-        if (killedEnemies == 0)
-        {
+		// assign score based on the number of enemies killed
+        if (killedEnemies == 0) {
             return 400;
-        }
-        else if (killedEnemies == 1)
-        {
+        } else if (killedEnemies == 1) {
             return 200;
-        }
-        else if (killedEnemies <= 3)
-        {
+        } else if (killedEnemies <= 3) {
             return 100;
-        }
-        else
-        {
+        } else {
             return 0;
         }
     }
 
-    private int calculateBigTrapBonus()
-    {
+	// calculate the big trap bonus
+    private int calculateBigTrapBonus() {
         GameObject[,] platformArray = GameObject.Find("StartPlatform").GetComponent<Initialization>().platformArray;
 
-        for (int i = 0; i < platformArray.GetLength(0) - 1; i++)
-        {
-            for (int j = 0; j < platformArray.GetLength(1) - 1; j++)
-            {
+        for (int i = 0; i < platformArray.GetLength(0) - 1; i++) {
+            for (int j = 0; j < platformArray.GetLength(1) - 1; j++) {
                 platformScript platform = platformArray[i, j].GetComponent<platformScript>();
 
-                if (platform.getState() == "active")
-                {
-                    if (platform.connectionID == 0)
-                    {
+                if (platform.getState() == "active") {
+                    if (platform.connectionID == 0) {
                         connectionID++;
                         platform.connectionID = connectionID;
                     } 
@@ -237,19 +198,16 @@ public class ScoreCalculation : MonoBehaviour {
                     {
                         platformArray[i + 1, j].GetComponent<platformScript>().connectionID = connectionID;
                     }
-
                     if (platformArray[i - 1, j] != null &&
                         platformArray[i - 1, j].GetComponent<platformScript>().getState() == "active")
                     {
                         platformArray[i - 1, j].GetComponent<platformScript>().connectionID = connectionID;
                     }
-
                     if (platformArray[i, j + 1] != null &&
                         platformArray[i, j + 1].GetComponent<platformScript>().getState() == "active")
                     {
                         platformArray[i, j + 1].GetComponent<platformScript>().connectionID = connectionID;
                     }
-
                     if (platformArray[i, j - 1] != null &&
                         platformArray[i, j - 1].GetComponent<platformScript>().getState() == "active")
                     {
@@ -257,8 +215,6 @@ public class ScoreCalculation : MonoBehaviour {
                     }
                 }
             }
-
-
         }
 
         int[] connectionIDs = new int[enemies.Length];
@@ -268,55 +224,41 @@ public class ScoreCalculation : MonoBehaviour {
             Debug.Log("CountConnectionIDS, Pos" + i + " mit wert " + countConnectionIDS[i]);
         }
 
-
-        
         Debug.Log("countConnectionIDS: " + countConnectionIDS.ToString());
         
-        for (int i = 0; i < connectionIDs.Length; i++)
-        {
-            
+        for (int i = 0; i < connectionIDs.Length; i++) {
             connectionIDs[i] = getConnectionID(enemies[i]);
             Debug.Log("connectionIDs: Gegner "+ i + "hat ID: " + connectionIDs[i]);
-            if (connectionIDs[i] != -1) { countConnectionIDS[connectionIDs[i]] = countConnectionIDS[connectionIDs[i]] + 1; }
-           
+            if (connectionIDs[i] != -1) { 
+				countConnectionIDS[connectionIDs[i]] = countConnectionIDS[connectionIDs[i]] + 1; 
+			}
         }
 
-        for (int i = 0; i < countConnectionIDS.Length; i++)
-        {
+        for (int i = 0; i < countConnectionIDS.Length; i++) {
             Debug.Log("CountConnectionIDS, Pos" + i + " mit wert " + countConnectionIDS[i]);
         }
 
         int trappedEnemies = Mathf.Max(countConnectionIDS);
 
-        if (trappedEnemies>= 3)
-        {
-         return trappedEnemies * 100;
-        } else
-        {
+        if (trappedEnemies >= 3) {
+            return trappedEnemies * 100;
+        } else {
             return 0;
         }
-        
-
     }
 
-    private int getConnectionID(GameObject enemy)
-    {
+    private int getConnectionID(GameObject enemy) {
         RaycastHit hit;
-
-        if (Physics.Raycast(enemy.transform.position, -Vector3.up, out hit))
-        {
-            if (hit.collider.CompareTag("platform"))
-            {
+        if (Physics.Raycast(enemy.transform.position, -Vector3.up, out hit)) {
+            if (hit.collider.CompareTag("platform")) {
                 return hit.collider.GetComponent<platformScript>().connectionID;
             }
-           
         }
-
         return -1;
     }
 
-    public int getScore()
-    {
+	// return the final score
+    public int getScore() {
         return finalBonus;
     }
 }

@@ -53,6 +53,6 @@ public class UIManager : MonoBehaviour {
 
 	// return to main menu
 	public void toMainMenu () {
-		Application.LoadLevel (0);
+		Application.LoadLevel ("MainMenu");
 	}
 }
