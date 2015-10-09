@@ -1,4 +1,4 @@
-Initialize engine version: 5.1.2f1 (afd2369b692a)
+Initialize engine version: 5.2.0f3 (e7947df39b5c)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
@@ -12,31 +12,410 @@ Platform assembly: C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-
 Loading C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
 Platform assembly: C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
 Platform assembly: C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
-Loading C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.047 seconds
+Platform assembly: C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\PKFx-Helper.dll (this message is harmless)
+Loading C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\PKFx-Helper.dll into Unity Child Domain
+Platform assembly: C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\PKFx-Runtime.dll (this message is harmless)
+Loading C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\PKFx-Runtime.dll into Unity Child Domain
+Platform assembly: C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\PKFxManager.dll (this message is harmless)
+Loading C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\PKFxManager.dll into Unity Child Domain
+Platform assembly: C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.071 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
 <RI> Input initialized.
 <RI> Initialized touch support.
-Platform assembly: C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\System.dll (this message is harmless)
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 29f8 -> priority: 1 
-IndexOutOfRangeException: Array index is out of range.
-  at platformScript.checkConnection () [0x00000] in <filename unknown>:0 
-  at ShootingPlatforms.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
+  Thread -> id: 37a0 -> priority: 1 
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 6.584957 ms
 
-IndexOutOfRangeException: Array index is out of range.
-  at platformScript.checkConnection () [0x00000] in <filename unknown>:0 
-  at ShootingPlatforms.Update () [0x00000] in <filename unknown>:0 
+Unloading 32 unused Assets to reduce memory usage. Loaded Objects now: 1182.
+Total: 0.640692 ms (FindLiveObjects: 0.062766 ms CreateObjectMapping: 0.055266 ms MarkObjects: 0.488315 ms  DeleteObjects: 0.033949 ms)
+
+Platform assembly: C:\Users\Xaver\Documents\uni\Introduction to Game Design\TOB-Game-Design\playable\TOB-game_Data\Managed\Boo.Lang.dll (this message is harmless)
+CountConnectionIDS, Pos0 mit wert 0
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos1 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos2 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos3 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos4 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos5 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos6 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos7 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+countConnectionIDS: System.Int32[]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 0hat ID: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 1hat ID: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 2hat ID: 3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 3hat ID: 7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 4hat ID: 6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 5hat ID: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 6hat ID: 6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 7hat ID: 6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos0 mit wert 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos1 mit wert 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos2 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos3 mit wert 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos4 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos5 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos6 mit wert 3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos7 mit wert 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Das sind die Boni!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+PLatform Bonus: 50
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+timeBonus: 300
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+enemyBonus: 400
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+bigtrapBonus :300
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Ganzer Bonus:1250
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos0 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos1 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos2 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos3 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos4 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos5 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos6 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos7 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+countConnectionIDS: System.Int32[]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 0hat ID: 7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 1hat ID: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 2hat ID: 7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 3hat ID: 7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 4hat ID: 6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 5hat ID: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 6hat ID: 6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 7hat ID: 6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos0 mit wert 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos1 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos2 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos3 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos4 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos5 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos6 mit wert 3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos7 mit wert 3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Das sind die Boni!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+PLatform Bonus: 50
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+timeBonus: 300
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+enemyBonus: 400
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+bigtrapBonus :300
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Ganzer Bonus:1250
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos0 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos1 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos2 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos3 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos4 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos5 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos6 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos7 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+countConnectionIDS: System.Int32[]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 0hat ID: 7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 1hat ID: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 2hat ID: 7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 3hat ID: 7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 4hat ID: 6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 5hat ID: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 6hat ID: 6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+connectionIDs: Gegner 7hat ID: 6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos0 mit wert 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos1 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos2 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos3 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos4 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos5 mit wert 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos6 mit wert 3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+CountConnectionIDS, Pos7 mit wert 3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Das sind die Boni!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+PLatform Bonus: 50
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+timeBonus: 300
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+enemyBonus: 400
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+bigtrapBonus :300
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Ganzer Bonus:1250
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 77.759018 ms
+
+Unloading 217 unused Assets to reduce memory usage. Loaded Objects now: 463.
+Total: 0.911496 ms (FindLiveObjects: 0.065529 ms CreateObjectMapping: 0.065924 ms MarkObjects: 0.422390 ms  DeleteObjects: 0.356466 ms)
 

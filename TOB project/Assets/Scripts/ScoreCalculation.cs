@@ -7,33 +7,94 @@ public class ScoreCalculation : MonoBehaviour {
     public int expectedDestroyedPlatforms;
     public int gettingTrophyBonus;
 
+    private GameObject[] scores;
+    public GameObject ui_textGettingTheTrophy;
+    public GameObject ui_textGettingTheTrophyNR;
+    public GameObject ui_platformBonus;
+    public GameObject ui_platformBonusNR;
+    public GameObject ui_timeBonus;
+    public GameObject ui_timeBonusNR;
+    public GameObject ui_EnemyBonus;
+    public GameObject ui_EnemyBonusNR;
+    public GameObject ui_bigTrapBonus;
+    public GameObject ui_bigTrapBonusNR;
+    public GameObject ui_fullScore;
+    public GameObject ui_fullScoreNR;
+
     private int finalBonus;
     private int platformBonus;
     private int timeBonus;
     private int enemyBonus;
     private int bigtrapBonus;
 
+    private bool fadeWhite = false;
+    private bool fadeScores = false;
+
     private int connectionID;
     private GameObject[] enemies;
 
-	// Use this for initialization
-	void Start () {
+    public GameObject scoreBGGameObject;
+    private CanvasGroup scoreBG;
+
+    // this is used to animate in text line after text line
+    private int counter = 0;
+
+    // Use this for initialization
+    void Start() {
         connectionID = 0;
         enemies = GameObject.FindGameObjectsWithTag("enemy");
 
+        scores = new GameObject[12];
+        scores[0] = ui_textGettingTheTrophy;
+        scores[1] = ui_textGettingTheTrophyNR;
+        scores[2] = ui_platformBonus; 
+        scores[3] = ui_platformBonusNR;
+        scores[4] = ui_timeBonus;
+        scores[5] = ui_timeBonusNR;
+        scores[6] = ui_EnemyBonus;
+        scores[7] = ui_EnemyBonusNR;
+        scores[8] = ui_bigTrapBonus;
+        scores[9] = ui_bigTrapBonusNR;
+        scores[10] = ui_fullScore;
+        scores[11] = ui_fullScoreNR;
 
+        foreach (GameObject score in scores)
+        {
+            score.GetComponent<Text>().color = new Color(0.2f, 0.2f, 0.2f, 0.0f);
+        }
+
+        scoreBG = scoreBGGameObject.GetComponent<CanvasGroup>();
+        scoreBG.alpha = 0.0f;
+
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
-	    if (Input.GetKeyDown(KeyCode.U))
-         {
-            showScore();
-         }
 
-        if (Input.GetKeyDown(KeyCode.T))
+        if (fadeWhite)
         {
-            Debug.Log(Time.timeSinceLevelLoad);
+             scoreBG.alpha = Mathf.Lerp(scoreBG.alpha, 1.0f, Time.deltaTime);
+        }
+
+        if (fadeScores)
+        {
+           if (counter < scores.Length && animateIn(scores[counter].GetComponent<Text>()))
+            {
+                counter++;
+            }
+        }
+    }
+
+    private bool animateIn(Text text){
+        text.color = Color.Lerp(text.color, Color.grey, Time.deltaTime*11.0f);
+
+        if (text.color== Color.grey)
+        {
+            return true;
+        } else
+        {
+            return false;
         }
     }
 
@@ -46,6 +107,19 @@ public class ScoreCalculation : MonoBehaviour {
         GameObject.Find("platformBonus_number").GetComponent<Text>().text = platformBonus.ToString();
         GameObject.Find("Full Score_number").GetComponent<Text>().text = finalBonus.ToString();
 
+        fadeinWhite();
+
+        Invoke("fadeinScores", 1.1f);
+    }
+
+    private void fadeinWhite()
+    {
+        fadeWhite = true;
+    }
+
+    private void fadeinScores()
+    {
+        fadeScores = true;
     }
 
     private void calculateBonus()
@@ -80,7 +154,7 @@ public class ScoreCalculation : MonoBehaviour {
         } else if (destroyedPlatforms == expectedDestroyedPlatforms-1)
         {
             return 100;
-        } else if (destroyedPlatforms == expectedDestroyedPlatforms - 2)
+        } else if (destroyedPlatforms <= expectedDestroyedPlatforms - 2)
         {
             return 200;
         } else
@@ -239,5 +313,10 @@ public class ScoreCalculation : MonoBehaviour {
         }
 
         return -1;
+    }
+
+    public int getScore()
+    {
+        return finalBonus;
     }
 }

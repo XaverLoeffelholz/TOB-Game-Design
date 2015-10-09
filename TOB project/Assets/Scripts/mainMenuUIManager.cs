@@ -47,7 +47,10 @@ public class mainMenuUIManager : MonoBehaviour {
 		if (PlayerPrefs.GetInt ("mbsTrophy") == 1) {
 			trophyMBS.GetComponent<MeshRenderer> ().enabled = true;
 		}
-	}
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
 
 	// start a new game
 	public void newGame() {
