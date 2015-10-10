@@ -3,8 +3,11 @@ using System.Collections;
 
 public class enemyScript : MonoBehaviour {
 
-	// link to Animator component
-	public Animator animController;
+    public AudioClip monsterSound1;
+    public AudioClip monsterSound2;
+
+    // link to Animator component
+    public Animator animController;
 	
 	// used to set anim controller parameters
 	public enum WalkingState {Idle, Running, jumpingDown};
@@ -59,8 +62,10 @@ public class enemyScript : MonoBehaviour {
 				//transform.LookAt(goal);
 			} else if (agent.pathStatus == NavMeshPathStatus.PathInvalid && !agent.isOnOffMeshLink) {
 				agent.Stop ();
-			} else {
-				agent.Resume();
+
+            } else {
+              
+                agent.Resume();
 			}
 		}
 
@@ -70,14 +75,19 @@ public class enemyScript : MonoBehaviour {
 				walkState = WalkingState.Running;
 				//set animation speed based on navAgent 'Speed' variable
 				animController.speed = agent.speed;
-			} else {
+
+
+
+            } else {
 				walkState = WalkingState.Idle;
 			}
 		// if the enemies is on the UFO
 		} else {
 			agent.ActivateCurrentOffMeshLink(true);
 
-			float stepUp = 1.0f * agent.speed * Time.deltaTime;
+
+
+            float stepUp = 1.0f * agent.speed * Time.deltaTime;
 			float stepDown = 2.0f * agent.speed * Time.deltaTime;
 			Vector3 endPos = agent.currentOffMeshLinkData.endPos + Vector3.up*agent.baseOffset;
 			Vector3 middlePos = agent.currentOffMeshLinkData.startPos + Vector3.up*0.6f;
@@ -119,9 +129,13 @@ public class enemyScript : MonoBehaviour {
 		animController.SetInteger ("walkingState", (int)walkState);
 	}
 
-	// punch the player if the player is too near the enemy
-	public void punchPlayer() {
-		playerBody.drag = 0.0f;
+    // punch the player if the player is too near the enemy
+    public void punchPlayer() {
+        if (!GameObject.Find("Punch").GetComponent<AudioSource>().isPlaying) { 
+            GameObject.Find("Punch").GetComponent<AudioSource>().Play();
+        }
+
+        playerBody.drag = 0.0f;
 		playerBody.velocity = new Vector3 (playerBody.velocity.x, 0f, playerBody.velocity.z);
 		playerBody.MovePosition (new Vector3 (player.transform.position.x, player.transform.position.y + 0.2f, player.transform.position.z - 0.1f));
         
@@ -143,11 +157,15 @@ public class enemyScript : MonoBehaviour {
         this.transform.position = getStartPosition();
         this.GetComponent<NavMeshAgent>().enabled = true;
         this.GetComponent<Rigidbody>().isKinematic = true;
+        this.GetComponent<AudioSource>().clip = monsterSound1;
+        this.GetComponent<AudioSource>().Play();
     }
 
 	// if the enemy is being killed
     public void kill()
     {
+        this.GetComponent<AudioSource>().clip = monsterSound2;
+        this.GetComponent<AudioSource>().Play();
         numberOfEnemyKilled++;
         this.GetComponent<NavMeshAgent>().enabled = false;
         this.GetComponent<Rigidbody>().isKinematic = false;

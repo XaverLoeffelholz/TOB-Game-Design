@@ -75,11 +75,16 @@ public class ScoreCalculation : MonoBehaviour {
            if (counter < scores.Length && animateIn(scores[counter].GetComponent<Text>())) {
                 counter++;
             }
+
+            if (counter == scores.Length - 2)
+            {
+                GameObject.Find("FullBonus").GetComponent<AudioSource>().Play();
+            }
         }
     }
 
     private bool animateIn(Text text) {
-        text.color = Color.Lerp(text.color, Color.grey, Time.deltaTime * 11.0f);
+        text.color = Color.Lerp(text.color, Color.grey, Time.deltaTime * 16.0f);
         if (text.color== Color.grey) {
             return true;
         } else {

@@ -95,7 +95,8 @@ public class shootingPlatforms : MonoBehaviour {
 			else if (shootPlatform) {
 				// if platform is in a preview state and connected, build it
 				if ((platformState == "preview" || platformState == "inactive") && connected) {
-					// build the platform
+                    // build the platform
+                    GameObject.Find("Shoot").GetComponent<AudioSource>().Play();
 					hit.collider.gameObject.GetComponent<platformScript> ().build ();
 
                     // show laser green
@@ -113,6 +114,7 @@ public class shootingPlatforms : MonoBehaviour {
 						destroyedPlatforms++;
 						// destroy the platform
 						hit.collider.gameObject.GetComponent<platformScript> ().destroy ();
+                        GameObject.Find("Destroy").GetComponent<AudioSource>().Play();
 
                         // show laser red
                         laserLine.material.color = laserDestroyColor;

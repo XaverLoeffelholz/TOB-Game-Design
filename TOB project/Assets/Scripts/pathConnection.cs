@@ -46,9 +46,12 @@ public class pathConnection : MonoBehaviour {
             }
 
 			// if all the generator platform(s) is(are) connected to the trophy platform, destroy the cage
-            if (allConnectionsDone) { 
-				cage.GetComponent<cageScript>().destroyCage(); 
-			}
+            if (allConnectionsDone) {
+                if (!cage.GetComponent<cageScript>().cageDestroyed) {
+                     GameObject.Find("Explosion").GetComponent<AudioSource>().Play();
+				     cage.GetComponent<cageScript>().destroyCage();
+                }
+            }
 		} 
 	}
 }

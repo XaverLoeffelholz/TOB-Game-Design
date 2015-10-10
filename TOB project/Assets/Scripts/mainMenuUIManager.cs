@@ -21,9 +21,10 @@ public class mainMenuUIManager : MonoBehaviour {
 	private int singaCollected;
 	private int mbsCollected;
 
+    public AudioClip finishSong;
+
 	// Use this for initialization
 	void Start () {
-
         // enable the dragon platform by default
         platformDragon.GetComponent<platformEvent> ().enabled = true;
 
@@ -47,7 +48,9 @@ public class mainMenuUIManager : MonoBehaviour {
 		}
 		if (PlayerPrefs.GetInt ("mbsTrophy") >= 1) {
 			trophyMBS.GetComponent<MeshRenderer> ().enabled = true;
-		}
+            GameObject.Find("Music").GetComponent<AudioSource>().clip = finishSong;
+            GameObject.Find("Music").GetComponent<AudioSource>().Play();
+        }
 
 		// display the cursor
         Cursor.visible = true;
@@ -61,8 +64,8 @@ public class mainMenuUIManager : MonoBehaviour {
 
 	// start a new game
 	public void newGame() {
-		// set all the trophy to not collected
-		PlayerPrefs.SetInt ("dragonTrophy", 0);
+        // set all the trophy to not collected
+        PlayerPrefs.SetInt ("dragonTrophy", 0);
 		PlayerPrefs.SetInt ("airportTrophy", 0);
 		PlayerPrefs.SetInt ("merlionTrophy", 0);
 		PlayerPrefs.SetInt ("singaTrophy", 0);
@@ -73,6 +76,6 @@ public class mainMenuUIManager : MonoBehaviour {
 
 	// exit the game
 	public void exitGame () {
-		Application.Quit ();
+        Application.Quit ();
 	}
 }

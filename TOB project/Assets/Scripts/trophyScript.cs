@@ -23,6 +23,11 @@ public class trophyScript : MonoBehaviour
             trophyCollected = true;
             GameObject.Find("Score").GetComponent<ScoreCalculation>().showScore();
             Invoke("levelSolved", 12.0f);
+
+            GameObject.Find("CollectTrophy").GetComponent<AudioSource>().Play();
+
+            GameObject.Find("Score").GetComponent<ScoreCalculation>().showScore();
+            Invoke("FullBonusSound", 12.5f);
         }
 
         if (trophyCollected) { 
@@ -33,7 +38,6 @@ public class trophyScript : MonoBehaviour
 	// once the trophy is collected
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")) {
-
             //we can not stop the time, because it would also stop the animation
             //so we block user inputs and stop the monsters
             RigidbodyFirstPersonController playerRigidBody = other.transform.GetComponent<RigidbodyFirstPersonController>();
@@ -45,8 +49,12 @@ public class trophyScript : MonoBehaviour
             }
 
             trophyCollected = true;
+
+            GameObject.Find("CollectTrophy").GetComponent<AudioSource>().Play();
+
             GameObject.Find("Score").GetComponent<ScoreCalculation>().showScore();
-            Invoke("levelSolved", 14.5f);
+            
+            Invoke("levelSolved", 12.0f);
         }
     }
 
