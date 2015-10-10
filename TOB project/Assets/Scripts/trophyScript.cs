@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 using System.Collections;
 
 public class trophyScript : MonoBehaviour
@@ -31,9 +32,22 @@ public class trophyScript : MonoBehaviour
 
 	// once the trophy is collected
     void OnTriggerEnter(Collider other) {
-        trophyCollected = true;
-        GameObject.Find("Score").GetComponent<ScoreCalculation>().showScore();
-        Invoke("levelSolved", 14.5f);
+        if (other.CompareTag("Player")) {
+
+            //we can not stop the time, because it would also stop the animation
+            //so we block user inputs and stop the monsters
+            RigidbodyFirstPersonController playerRigidBody = other.transform.GetComponent<RigidbodyFirstPersonController>();
+            playerRigidBody.enabled = false;
+
+            foreach (GameObject monster in GameObject.FindGameObjectsWithTag("enemy"))
+            {
+                monster.GetComponent<enemyScript>().stopHunting();
+            }
+
+            trophyCollected = true;
+            GameObject.Find("Score").GetComponent<ScoreCalculation>().showScore();
+            Invoke("levelSolved", 14.5f);
+        }
     }
 
     private void levelSolved() {

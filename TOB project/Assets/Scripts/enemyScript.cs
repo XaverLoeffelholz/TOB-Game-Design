@@ -7,7 +7,7 @@ public class enemyScript : MonoBehaviour {
 	public Animator animController;
 	
 	// used to set anim controller parameters
-	public enum WalkingState {Idle, Walking, Running, jumpingDown};
+	public enum WalkingState {Idle, Running, jumpingDown};
 	public enum AttackState {NoAttack, Attack};
 	public WalkingState walkState;
 	
@@ -75,7 +75,6 @@ public class enemyScript : MonoBehaviour {
 			}
 		// if the enemies is on the UFO
 		} else {
-			walkState = WalkingState.jumpingDown;
 			agent.ActivateCurrentOffMeshLink(true);
 
 			float stepUp = 1.0f * agent.speed * Time.deltaTime;
@@ -84,9 +83,11 @@ public class enemyScript : MonoBehaviour {
 			Vector3 middlePos = agent.currentOffMeshLinkData.startPos + Vector3.up*0.6f;
 			middlePos.Set(agent.currentOffMeshLinkData.startPos.x + 0.8f*(endPos.x-agent.currentOffMeshLinkData.startPos.x), middlePos.y, agent.currentOffMeshLinkData.startPos.z + 0.8f*(endPos.z-agent.currentOffMeshLinkData.startPos.z));
 
-		//	transform.LookAt(goal);
+            //	transform.LookAt(goal);
 
-			if (transform.position != middlePos && jumpDown == false) {
+            walkState = WalkingState.jumpingDown;
+
+            if (transform.position != middlePos && jumpDown == false) {
 				transform.position = Vector3.MoveTowards(transform.position, middlePos, stepUp);
 			} else if (transform.position.y >= (middlePos.y-0.8) && jumpDown == false) {
 				jumpDown = true;
@@ -97,7 +98,6 @@ public class enemyScript : MonoBehaviour {
 			} else if (transform.position.y <= (endPos.y + 0.5) && jumpDown == true) {
 				jumpDown = false;
                 agent.CompleteOffMeshLink();
-                walkState = WalkingState.Running;
 				Debug.Log ("Monster jumping down");
 			}
 		}
@@ -106,7 +106,10 @@ public class enemyScript : MonoBehaviour {
 		Vector3 distanceToPlayer = transform.position - goal.position;
 		if (distanceToPlayer.magnitude <= 2.5f) {
 			animController.SetInteger ("attackState", (int)AttackState.Attack);
-		}
+		} else
+        {
+            animController.SetInteger("attackState", (int)AttackState.NoAttack);
+        }
 		if (distanceToPlayer.magnitude <= 1.6f) {
 			//transform.LookAt(goal);
 			Invoke("punchPlayer", 0.15f);
@@ -121,7 +124,10 @@ public class enemyScript : MonoBehaviour {
 		playerBody.drag = 0.0f;
 		playerBody.velocity = new Vector3 (playerBody.velocity.x, 0f, playerBody.velocity.z);
 		playerBody.MovePosition (new Vector3 (player.transform.position.x, player.transform.position.y + 0.2f, player.transform.position.z - 0.1f));
-        playerBody.AddForce(agent.velocity * 15.0f, ForceMode.Acceleration);
+        
+        // make sure there are no infinite values for the punch
+        Vector3 strength = new Vector3(Mathf.Min(agent.velocity.x * 15.0f, 150.0f), Mathf.Min(agent.velocity.y * 15.0f, 150.0f), Mathf.Min(agent.velocity.z * 15.0f, 150.0f));
+        playerBody.AddForce(strength, ForceMode.Acceleration);
     }
 
 	// return the start position of the enemy, especially for respawning
@@ -146,9 +152,12 @@ public class enemyScript : MonoBehaviour {
         this.GetComponent<NavMeshAgent>().enabled = false;
         this.GetComponent<Rigidbody>().isKinematic = false;
         this.GetComponent<Rigidbody>().mass = 25;
-        //this.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, -3.0f, 0.0f), ForceMode.Acceleration);
-        //this.GetComponent<Rigidbody>().AddRelativeTorque(new Vector3(-5.0f, 0.0f, 0.0f), ForceMode.Impulse);
 		// respawn the enemy after 4 seconds
         Invoke("respawnEnemy", 4.0f);
+    }
+
+    public void stopHunting()
+    {
+        this.navAgent.enabled = false;
     }
 }
