@@ -13,9 +13,11 @@ public class platformEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 	private Color platformColor;
 
 	void Start () {
-		// set the time scale back to 1 whenever the main menu is loaded within the game
-		// this will ensure that all the subsequent scenes will be loaded properly
-		Time.timeScale = 1f;
+        PlayerPrefs.DeleteAll();
+
+        // set the time scale back to 1 whenever the main menu is loaded within the game
+        // this will ensure that all the subsequent scenes will be loaded properly
+        Time.timeScale = 1f;
 		// save the original platform color
 		platformRenderer = platform.GetComponent<MeshRenderer> ();
 		platformColor = platformRenderer.material.color;
@@ -41,6 +43,7 @@ public class platformEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 		// load a level on mouse click
 		Application.LoadLevel ("Level" + level.ToString ());
 
+        /*
 		// debug codes
 		if (level == 1) {
 			PlayerPrefs.SetInt ("dragonTrophy", 1);
@@ -53,5 +56,6 @@ public class platformEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 		} else if (level == 5) {
 			PlayerPrefs.SetInt ("mbsTrophy", 1);
 		}
+        */
 	}
 }

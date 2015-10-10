@@ -23,28 +23,29 @@ public class mainMenuUIManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		// enable the dragon platform by default
-		platformDragon.GetComponent<platformEvent> ().enabled = true;
+
+        // enable the dragon platform by default
+        platformDragon.GetComponent<platformEvent> ().enabled = true;
 
 		// display the trophies that are already collected
 		// enable the platform based on the trophies that are already collected
-		if (PlayerPrefs.GetInt ("dragonTrophy") == 1) {
+		if (PlayerPrefs.GetInt ("dragonTrophy") >= 1) {
 			trophyDragon.GetComponent<MeshRenderer> ().enabled = true;
 			platformAirport.GetComponent<platformEvent> ().enabled = true;
 		}
-		if (PlayerPrefs.GetInt ("airportTrophy") == 1) {
+		if (PlayerPrefs.GetInt ("airportTrophy") >= 1) {
 			trophyAirport.GetComponent<MeshRenderer> ().enabled = true;
 			platformMerlion.GetComponent<platformEvent> ().enabled = true;
 		}
-		if (PlayerPrefs.GetInt ("merlionTrophy") == 1) {
+		if (PlayerPrefs.GetInt ("merlionTrophy") >= 1) {
 			trophyMerlion.GetComponent<MeshRenderer> ().enabled = true;
 			platformSinga.GetComponent<platformEvent> ().enabled = true;
 		}
-		if (PlayerPrefs.GetInt ("singaTrophy") == 1) {
+		if (PlayerPrefs.GetInt ("singaTrophy") >= 1) {
 			trophySinga.GetComponent<MeshRenderer> ().enabled = true;
 			platformMBS.GetComponent<platformEvent> ().enabled = true;
 		}
-		if (PlayerPrefs.GetInt ("mbsTrophy") == 1) {
+		if (PlayerPrefs.GetInt ("mbsTrophy") >= 1) {
 			trophyMBS.GetComponent<MeshRenderer> ().enabled = true;
 		}
 

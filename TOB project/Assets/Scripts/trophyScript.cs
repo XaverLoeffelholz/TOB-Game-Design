@@ -53,6 +53,12 @@ public class trophyScript : MonoBehaviour
     private void levelSolved() {
         // Here we can save the score in an external file
         score = GameObject.Find("Score").GetComponent<ScoreCalculation>().getScore();
+        if (Application.loadedLevelName == "Level1") { PlayerPrefs.SetInt("dragonTrophy", score); }
+        else if (Application.loadedLevelName == "Level2") { PlayerPrefs.SetInt("airportTrophy", score); }
+        else if (Application.loadedLevelName == "Level3") { PlayerPrefs.SetInt("merlionTrophy", score); }
+        else if (Application.loadedLevelName == "Level4") { PlayerPrefs.SetInt("singaTrophy", score); }
+        else if (Application.loadedLevelName == "Level5") { PlayerPrefs.SetInt("mbsTrophy", score); }
+
         Application.LoadLevel("MainMenu");
     }
 }
