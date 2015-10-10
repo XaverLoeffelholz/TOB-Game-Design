@@ -34,12 +34,9 @@ public class pathConnection : MonoBehaviour {
 
             // check thorugh all connections
             allConnectionsDone = true;
-            foreach (GameObject connection in allconnections)
-            {
-                if (!connection.GetComponent<pathConnection>().connectionSuccessful)
-                {
-                    if (connection.GetComponent<pathConnection>().cage == this.cage)
-                    {
+            foreach (GameObject connection in allconnections) {
+                if (!connection.GetComponent<pathConnection>().connectionSuccessful) {
+                    if (connection.GetComponent<pathConnection>().cage == this.cage) {
                         allConnectionsDone = false;
                     }
                 }

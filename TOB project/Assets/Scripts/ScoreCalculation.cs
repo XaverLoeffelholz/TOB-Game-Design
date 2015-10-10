@@ -76,8 +76,7 @@ public class ScoreCalculation : MonoBehaviour {
                 counter++;
             }
 
-            if (counter == scores.Length - 2)
-            {
+            if (counter == scores.Length - 2) {
                 GameObject.Find("FullBonus").GetComponent<AudioSource>().Play();
             }
         }

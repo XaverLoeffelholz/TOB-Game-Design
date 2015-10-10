@@ -2,11 +2,7 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 
-public class platformEvent : MonoBehaviour  
-{
-
-    //IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
-
+public class platformEvent : MonoBehaviour {
     public GameObject trophy;
 	public GameObject platform;
 	public int level;
@@ -26,30 +22,37 @@ public class platformEvent : MonoBehaviour
 		platformColor = platformRenderer.material.color;
 	}
 
-    void OnMouseOver()
-    {
+	// set hover to true if mouse if over the platform
+    void OnMouseOver() {
         hover = true;
     }
 
-    void Update()
-    {
+	// stop rotating the trophy and revert the color of the platform to its original
+	// color if mouse exit the platform
+	void onMouseExit()
+	{
+		// stop the rotation of the trophy
+		if (trophy != null) {
+			trophy.GetComponent<trophyRotation>().enabled = false;
+		}
+		// change the platform color back to its original color
+		platformRenderer.material.color = platformColor;
+	}
 
-        if (hover)
-        {
+    void Update() {
+        if (hover) {
             // rotate the trophy to make it more spectacular
             trophy.GetComponent<trophyRotation>().enabled = true;
             // change the platform color to highlight color
             platformRenderer.material.color = highlightColor;
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                // load a level on mouse click
+			// load a level on mouse click
+            if (Input.GetMouseButtonDown(0)) {
                 Application.LoadLevel("Level" + level.ToString());
             }
         } else { 
             // stop the rotation of the trophy
-            if (trophy != null)
-            {
+            if (trophy != null) {
                 trophy.GetComponent<trophyRotation>().enabled = false;
             }
             // change the platform color back to its original color
@@ -57,62 +60,7 @@ public class platformEvent : MonoBehaviour
         }
     }
 
-    void LateUpdate()
-    {
+    void LateUpdate() {
         hover = false;
     }
-
-    void onMouseExit()
-    {
-        // stop the rotation of the trophy
-        if (trophy != null)
-        {
-            trophy.GetComponent<trophyRotation>().enabled = false;
-        }
-        // change the platform color back to its original color
-        Debug.Log("In On MOuse Exit!");
-        platformRenderer.material.color = platformColor;
-    }
-
-
-    /*
-
-	public void OnPointerEnter(PointerEventData eventData) {
-		// rotate the trophy to make it more spectacular
-		trophy.GetComponent<trophyRotation> ().enabled = true;
-		// change the platform color to highlight color
-		platformRenderer.material.color = highlightColor;
-	}
-
-	public void OnPointerExit(PointerEventData eventData) {
-		// stop the rotation of the trophy
-		if (trophy != null) {
-			trophy.GetComponent<trophyRotation> ().enabled = false;
-		}
-		// change the platform color back to its original color
-		platformRenderer.material.color = platformColor;
-	}
-
-	public void OnPointerClick(PointerEventData eventData) {
-        // load a level on mouse click
-        Application.LoadLevel ("Level" + level.ToString ());
-
-        /*
-		// debug codes
-		if (level == 1) {
-			PlayerPrefs.SetInt ("dragonTrophy", 1);
-		} else if (level == 2) {
-			PlayerPrefs.SetInt ("airportTrophy", 1);
-		} else if (level == 3) {
-			PlayerPrefs.SetInt ("merlionTrophy", 1);
-		} else if (level == 4) {
-			PlayerPrefs.SetInt ("singaTrophy", 1);
-		} else if (level == 5) {
-			PlayerPrefs.SetInt ("mbsTrophy", 1);
-		}
-        
-	}*/
-
-
-
 }

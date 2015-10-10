@@ -64,7 +64,6 @@ public class enemyScript : MonoBehaviour {
 				agent.Stop ();
 
             } else {
-              
                 agent.Resume();
 			}
 		}
@@ -75,17 +74,12 @@ public class enemyScript : MonoBehaviour {
 				walkState = WalkingState.Running;
 				//set animation speed based on navAgent 'Speed' variable
 				animController.speed = agent.speed;
-
-
-
             } else {
 				walkState = WalkingState.Idle;
 			}
 		// if the enemies is on the UFO
 		} else {
 			agent.ActivateCurrentOffMeshLink(true);
-
-
 
             float stepUp = 1.0f * agent.speed * Time.deltaTime;
 			float stepDown = 2.0f * agent.speed * Time.deltaTime;
@@ -116,8 +110,7 @@ public class enemyScript : MonoBehaviour {
 		Vector3 distanceToPlayer = transform.position - goal.position;
 		if (distanceToPlayer.magnitude <= 2.5f) {
 			animController.SetInteger ("attackState", (int)AttackState.Attack);
-		} else
-        {
+		} else {
             animController.SetInteger("attackState", (int)AttackState.NoAttack);
         }
 		if (distanceToPlayer.magnitude <= 1.6f) {
@@ -145,14 +138,12 @@ public class enemyScript : MonoBehaviour {
     }
 
 	// return the start position of the enemy, especially for respawning
-	public Vector3 getStartPosition()
-    {
+	public Vector3 getStartPosition() {
         return startPosition;
     }
 
 	// respawn the enemy if it is being killed
-    private void respawnEnemy()
-    {
+    private void respawnEnemy() {
         Instantiate(spawnAnimation, getStartPosition(), Quaternion.identity);
         this.transform.position = getStartPosition();
         this.GetComponent<NavMeshAgent>().enabled = true;
@@ -162,8 +153,7 @@ public class enemyScript : MonoBehaviour {
     }
 
 	// if the enemy is being killed
-    public void kill()
-    {
+    public void kill() {
         this.GetComponent<AudioSource>().clip = monsterSound2;
         this.GetComponent<AudioSource>().Play();
         numberOfEnemyKilled++;
@@ -174,8 +164,7 @@ public class enemyScript : MonoBehaviour {
         Invoke("respawnEnemy", 4.0f);
     }
 
-    public void stopHunting()
-    {
+    public void stopHunting() {
         this.navAgent.enabled = false;
     }
 }
