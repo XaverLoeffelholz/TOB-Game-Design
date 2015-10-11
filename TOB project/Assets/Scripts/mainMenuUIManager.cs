@@ -14,6 +14,12 @@ public class mainMenuUIManager : MonoBehaviour {
 	public GameObject trophySinga;
 	public GameObject trophyMBS;
 
+	public GameObject fireworksRight;
+	public GameObject fireworksLeft;
+	public GameObject congratsText;
+
+	public AudioClip finishSong;
+
 	// store which trophy is collected
 	private int dragonCollected;
 	private int airportCollected;
@@ -21,10 +27,13 @@ public class mainMenuUIManager : MonoBehaviour {
 	private int singaCollected;
 	private int mbsCollected;
 
-    public AudioClip finishSong;
-
 	// Use this for initialization
 	void Start () {
+		// disable the firework and congrats text unless level 5 is completed
+		fireworksRight.SetActive (false);
+		fireworksLeft.SetActive (false);
+		congratsText.SetActive (false);
+
         // enable the dragon platform by default
         platformDragon.GetComponent<platformEvent> ().enabled = true;
 
@@ -48,6 +57,12 @@ public class mainMenuUIManager : MonoBehaviour {
 		}
 		if (PlayerPrefs.GetInt ("mbsTrophy") >= 1) {
 			trophyMBS.GetComponent<MeshRenderer> ().enabled = true;
+			// enable fireworks and congrats text once level 5 is completed
+			fireworksRight.SetActive (true);
+			fireworksLeft.SetActive (true);
+			congratsText.SetActive (true);
+
+			// play the finishing song once level 5 is completed
             GameObject.Find("Music").GetComponent<AudioSource>().clip = finishSong;
             GameObject.Find("Music").GetComponent<AudioSource>().Play();
         }
