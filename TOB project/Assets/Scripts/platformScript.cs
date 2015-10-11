@@ -15,7 +15,7 @@ public class platformScript : MonoBehaviour {
     public GameObject destroyAnimation;
     public GameObject buildingAnimation;
 
-    public int connectionID;
+    public int connectionID = 0;
 
 	// Use this for initialization
 	void Start () {

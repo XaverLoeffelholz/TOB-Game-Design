@@ -194,6 +194,7 @@ public class ScoreCalculation : MonoBehaviour {
                 if (platform.getState() == "active") {
                     if (platform.connectionID == 0) {
                         connectionID++;
+                        Debug.Log("Neue ConnectionID: " + connectionID);
                         platform.connectionID = connectionID;
                     } 
 
@@ -223,12 +224,12 @@ public class ScoreCalculation : MonoBehaviour {
 
         int[] connectionIDs = new int[enemies.Length];
         int[] countConnectionIDS = new int[connectionID + 1];
+
         for (int i = 0; i < countConnectionIDS.Length; i++) {            
             countConnectionIDS[i] = 0;
-            Debug.Log("CountConnectionIDS, Pos" + i + " mit wert " + countConnectionIDS[i]);
         }
 
-        Debug.Log("countConnectionIDS: " + countConnectionIDS.ToString());
+        /*
         
         for (int i = 0; i < connectionIDs.Length; i++) {
             connectionIDs[i] = getConnectionID(enemies[i]);
@@ -238,11 +239,20 @@ public class ScoreCalculation : MonoBehaviour {
 			}
         }
 
+
         for (int i = 0; i < countConnectionIDS.Length; i++) {
             Debug.Log("CountConnectionIDS, Pos" + i + " mit wert " + countConnectionIDS[i]);
         }
 
         int trappedEnemies = Mathf.Max(countConnectionIDS);
+        */
+
+        for (int i = 0; i < connectionIDs.Length; i++)
+        {
+            connectionIDs[i] = getConnectionID(enemies[i]);
+        }
+
+        int trappedEnemies = getPopularElement(connectionIDs);
 
         if (trappedEnemies >= 3) {
             return trappedEnemies * 100;
@@ -264,5 +274,29 @@ public class ScoreCalculation : MonoBehaviour {
 	// return the final score
     public int getScore() {
         return finalBonus;
+    }
+
+
+    public int getPopularElement(int[] a)
+    {
+        int count = 1, tempCount;
+        int popular = a[0];
+        int temp = 0;
+        for (int i = 0; i < (a.Length - 1); i++)
+        {
+            temp = a[i];
+            tempCount = 0;
+            for (int j = 1; j < a.Length; j++)
+            {
+                if (temp == a[j])
+                    tempCount++;
+            }
+            if (tempCount > count)
+            {
+                popular = temp;
+                count = tempCount;
+            }
+        }
+        return popular;
     }
 }

@@ -26,7 +26,7 @@ public class trophyScript : MonoBehaviour {
             GameObject.Find("CollectTrophy").GetComponent<AudioSource>().Play();
 
             GameObject.Find("Score").GetComponent<ScoreCalculation>().showScore();
-            Invoke("FullBonusSound", 12.5f);
+            Invoke("FullBonusSound", 11.5f);
         }
 
         if (trophyCollected) { 

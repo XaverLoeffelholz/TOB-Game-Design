@@ -62,6 +62,11 @@ public class mainMenuUIManager : MonoBehaviour {
 		Application.LoadLevel ("cutscene");
 	}
 
+    public void ShowCredits()  {
+
+        Application.LoadLevel("Credits");
+    }
+
 	// start a new game
 	public void newGame() {
         // set all the trophy to not collected
