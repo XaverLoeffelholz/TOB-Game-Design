@@ -27,6 +27,13 @@ public class movieManager : MonoBehaviour {
 		if (stop) {
 			stopMovie ();
 		}
+
+		// if the cutscene finishes, load the main menu
+		if (movie.isPlaying == false) 
+		{
+			Application.LoadLevel ("MainMenu");
+		}
+
 	}
 
 	// play the cutscene
